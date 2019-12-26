@@ -4,7 +4,7 @@
     <style>
       body {
         text-align: center;
-        font-family: sans-serif;
+        font-family: 'Comic Sans MS', cursive, sans-serif;
       }
 
       #current-number {
@@ -13,12 +13,14 @@
       }
 
       #start {
+        font-family: 'Comic Sans MS', cursive, sans-serif;
         font-size: 40px;
         background: green;
         color: white;
         border: none;
         padding: 10px 50px;
         border-radius: 5px;
+        margin-top: 100px;
       }
     </style>
   </head>
@@ -28,8 +30,8 @@
   </body>
 
   <script>
+    const audio = new Audio();
     let currentNumber = 1;
-    var audio = new Audio();
 
     function nextNumber() {
       if (currentNumber === 9) {
@@ -45,6 +47,7 @@
     }
 
     function start() {
+      $('#current-number').text('1');
       $('#start').hide();
       $('#current-number').show();
       audio.src = '1.m4a';
@@ -52,17 +55,13 @@
     }
 
     $(document).ready(() => {
-      $('#current-number').text(currentNumber);
-      
       $(document).keypress((e) => {
         if (e.key == currentNumber) {
           nextNumber();
         }
       });
 
-      $('#start').click(() => {
-        start();
-      })
+      $('#start').click(() => start());
     });
   </script>
 </html>
