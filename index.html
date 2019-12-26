@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+      body {
+        text-align: center;
+        font-family: sans-serif;
+      }
+
+      #current-number {
+        display: none;
+        font-size: calc(100vh/2);
+      }
+
+      #start {
+        font-size: 40px;
+        background: green;
+        color: white;
+        border: none;
+        padding: 10px 50px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="start">Start</button>
+    <div id="current-number"></div>
+  </body>
+
+  <script>
+    let currentNumber = 1;
+    var audio = new Audio();
+
+    function nextNumber() {
+      if (currentNumber === 9) {
+        currentNumber = 0;
+        $('#current-number').text(currentNumber);
+      } else {
+        currentNumber += 1;
+        $('#current-number').text(currentNumber);
+      }
+
+      audio.src = currentNumber + '.m4a';
+      audio.play();
+    }
+
+    function start() {
+      $('#start').hide();
+      $('#current-number').show();
+      audio.src = '1.m4a';
+      audio.play();
+    }
+
+    $(document).ready(() => {
+      $('#current-number').text(currentNumber);
+      
+      $(document).keypress((e) => {
+        if (e.key == currentNumber) {
+          nextNumber();
+        }
+      });
+
+      $('#start').click(() => {
+        start();
+      })
+    });
+  </script>
+</html>
